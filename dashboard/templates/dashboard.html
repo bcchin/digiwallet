@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} Digiwallet Dashboard {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 card wallet-card">
+                <!-- Display overall user wallet information -->
+                <div class="card-body">
+                    <h2 class="bold">Wallet Balance <i class='bx bx-money bx-fw'></i></h2>
+                    <h1 id="balance">${{balance}}</h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <h5>Money In<i class='bx bxs-down-arrow-alt bx-sm bx-fw green-text'></i></h5>
+                            <p id="money-in" class="money-in green-text">+${{income}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5>Money Out<i class='bx bxs-up-arrow-alt bx-sm bx-fw red-text' ></i></h5>
+                            <p id="money-out" class="money-out red-text">-${{expenses}}</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-6">
+            <div class="transaction-form">
+                <div class="section-wrapper">
+                    <h4 class="section-title text-center">Add Transactions</h4>
+                </div>
+                <!-- Display form where user inputs transaction -->
+                <form class="form-inline" method="POST">
+                    {% csrf_token %}
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Expense" name="name" required>
+                    </div>
+                    <div class="col">
+                        <input type="number" step=".01" class="form-control" placeholder="Amount" name="amount" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Category" name="category" required>
+                    </div>
+                    <br>
+                    <p><i>Please enter negative values for expenses and positive values for incomes/funds.</i></p>
+                    <div class="btn-wrapper text-center">
+                        <button type="submit" class="btn btn-dark" aria-label="Add new expense">+ Add transaction</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Displays all transactions previously added by user -->
+        <h4 class="section-title text-center">All Transactions</h4>
+        <ul class="expenses">
+            {% if transactions %}
+                {% for transaction in transactions %}
+                <li class="row card-body">
+                    <div class="col-4">
+                        <span class="-title" id="expense-title">{{transaction.name}}</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="title" id="expense-price"> ${{transaction.amount}}</span>
+                    </div>
+                    <div class="col-3">
+                        <span class="title" id="expense-price"> {{transaction.category}}</span>
+                    </div>
+                    <div class="col-1">
+                        <button class="close" id="close-btn" aria-label="Close">
+                            <span aria-hidden="true"><a href="{% url 'delete' transaction.id %}" class="close-btn">&times;</a></span>
+                        </button>
+                    </div>
+                </li>   
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+/*----------------------------------------------------------------------------
+ CSS for the dashboard page
+ ---------------------------------------------------------------------------*/
+
+.budget-header {
+    margin-top: 10%;
+}
+
+/* Style all visual compartments that contain information */
+.wallet-card, .expenses, .budgets {
+    margin-bottom: 5%;
+    padding: 1%;
+    background-color: #EEEFF0;
+    border: none;
+    border-radius: 25px;
+}
+
+.transaction-form {
+    margin: 3%;
+}
+
+.expenses, .budgets {
+    margin-top: 10px;
+}
+
+.green-text {
+    color: green;
+}
+
+.red-text {
+    color: red;
+}
+

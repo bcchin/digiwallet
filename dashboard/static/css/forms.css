@@ -1,0 +1,22 @@
+/*----------------------------------------------------------------------------
+ CSS for form that adds/removes expenses
+ ---------------------------------------------------------------------------*/
+
+/* Style the button to add an expense  */
+.btn-wrapper {
+    float: center;
+}
+
+/* Style the close button to remove an expense  */
+button:focus {
+    outline:none
+}
+
+#close-btn {
+    border-style: none;
+    color: grey;
+}
+
+.close-btn{
+    text-decoration: none;
+}
